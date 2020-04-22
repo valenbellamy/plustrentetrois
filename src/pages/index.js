@@ -1,8 +1,7 @@
-import React from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 export const query = graphql`
@@ -32,19 +31,111 @@ export const query = graphql`
 `
 
 const IndexPage = ({ data }) => {
+  const [nocursor, setNoCursor] = useState(false)
+  const [x, setX] = useState(null)
+  const [y, setY] = useState(null)
+  const [cursorText, setCursorText] = useState("")
+  const [mobile, setMobile] = useState(false)
+  const [width, setWidth] = useState(null)
+
+  useEffect(() => {
+    var device = navigator.userAgent.match(
+      /(iPhone|iPod|iPad|Android|BlackBerry)/
+    )
+    setMobile(device !== null ? true : false)
+  }, [])
+
+  useLayoutEffect(() => {
+    computeWidth()
+    window.addEventListener("resize", computeWidth)
+    return () => window.removeEventListener("resize", computeWidth)
+  }, [])
+
+  const computeWidth = () => {
+    let windowWidth = window.innerWidth
+    setWidth(windowWidth)
+  }
+
+  const initCursor = (e, title) => {
+    setNoCursor(nocursor => !nocursor)
+    setCursorText(title)
+    const targetX = e.clientX + 10
+    const targetY = e.clientY
+    setX(targetX)
+    setY(targetY)
+  }
+
+  const setCursor = e => {
+    const targetX = e.clientX + 10
+    const targetY = e.clientY
+    setX(targetX)
+    setY(targetY)
+  }
+
+  const deleteCursor = () => {
+    setNoCursor(nocursor => !nocursor)
+    setX(null)
+    setY(null)
+  }
+
   return (
-    <Layout>
-      <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      {data.allContentfulProjet.edges.map(projet => (
-        <h2>{projet.node.titre}</h2>
-      ))}
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
-      <Link to="/page-2/">Go to page 2</Link>
+    <Layout cursor={nocursor}>
+      <SEO title="Accueil" />
+      <section className="intro">
+        <h1>We are a French creative bureau born in 2019 in Paris, France.</h1>
+      </section>
+      <section className="project-home">
+        <div
+          className={`cursor ${nocursor ? "--active" : ""}`}
+          style={{ transform: `translate(${x}px, ${y}px)` }}
+          //style={{ top: `${y}px`, left: `${x}px` }}
+        >
+          {cursorText}
+        </div>
+        {data.allContentfulProjet.edges.map(projet => (
+          <>
+            {width < 992 ? (
+              <Link
+                to={`/project/${projet.node.slug}`}
+                className="project__img"
+                key={projet.node.id}
+              >
+                <Img
+                  fluid={projet.node.couverturePortrait.fluid}
+                  alt={projet.node.couverturePortrait.description}
+                />
+              </Link>
+            ) : (
+              <Link
+                key={projet.node.id}
+                to={`/project/${projet.node.slug}`}
+                onMouseEnter={e => {
+                  if (!mobile) {
+                    initCursor(e, `${projet.node.titre}`)
+                  }
+                }}
+                onMouseMove={e => {
+                  if (!mobile) {
+                    e.persist()
+                    setCursor(e)
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (!mobile) {
+                    deleteCursor()
+                  }
+                }}
+                className="project__img"
+              >
+                <Img
+                  fluid={projet.node.couverture.fluid}
+                  alt={projet.node.couverture.description}
+                />
+              </Link>
+            )}
+          </>
+        ))}
+      </section>
     </Layout>
   )
 }

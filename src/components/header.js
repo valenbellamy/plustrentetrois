@@ -1,42 +1,86 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useState, useLayoutEffect } from "react"
+import Logo from "./logo"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
+const Header = ({ inverse }) => {
+  const [navOpen, setNavOpen] = useState(false)
+  useLayoutEffect(() => {
+    window.addEventListener("resize", computeWidth)
+    return () => window.removeEventListener("resize", computeWidth)
+  })
+
+  const computeWidth = () => {
+    if (window.innerWidth > 991.98) {
+      setNavOpen(false)
+    }
+  }
+
+  return (
+    <header>
+      <nav
+        className={`navbar ${inverse ? "--inverse" : ""} ${
+          navOpen ? "--show" : ""
+        }`}
+      >
+        <Link to="/" className="navbar__brand">
+          <Logo />
         </Link>
-      </h1>
-    </div>
-  </header>
-)
+        <button
+          className={`navbar__toggler ${navOpen ? "--open" : ""}`}
+          type="button"
+          aria-expanded={navOpen}
+          aria-label="Toggle navigation"
+          onClick={() => setNavOpen(navOpen => !navOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div className="navbar__collapse">
+          <ul className="navbar__nav">
+            <li className="nav__item active">
+              <Link
+                className="nav__link"
+                to="/projects"
+                activeClassName="--active"
+              >
+                projects
+              </Link>
+            </li>
+            <li className="nav__item active">
+              <a
+                href="https://www.instagram.com/?hl=fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav__link"
+                to="about"
+              >
+                instagram
+              </a>
+            </li>
+            <li className="nav__item active">
+              <Link
+                className="nav__link"
+                to="/about"
+                activeClassName="--active"
+              >
+                about
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+  )
+}
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
+  inverse: PropTypes.bool,
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  inverse: false,
 }
 
 export default Header
