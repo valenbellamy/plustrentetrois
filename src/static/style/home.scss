@@ -1,0 +1,32 @@
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+  text-align: center;
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+.project-home {
+  .project__img {
+    display: block;
+    cursor: none !important;
+  }
+}
+
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: $main-size;
+  text-transform: uppercase;
+  color: $primary-text;
+  z-index: 10;
+  visibility: hidden;
+  &.--active {
+    visibility: visible;
+  }
+}

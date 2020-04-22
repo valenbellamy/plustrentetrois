@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Lausanne;
+  font-weight: 400;
+  font-style: normal;
+  src: url("Lausanne-400.woff") format("woff"),
+    url("Lausanne-400.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: Sorts;
+  font-style: normal;
+  src: url("SortsMillGoudy-Regular.woff") format("woff"),
+    url("SortsMillGoudy-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: Sortsitalic;
+  font-style: normal;
+  src: url("SortsMillGoudy-Italic.woff") format("woff"),
+    url("SortsMillGoudy-Italic.woff2") format("woff2");
+  font-display: swap;
+}

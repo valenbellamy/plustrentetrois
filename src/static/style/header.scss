@@ -1,0 +1,168 @@
+header {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+  overflow: hidden;
+  z-index: 2;
+  .navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0rem 3rem;
+    $height: 70px;
+    height: $height;
+    transition: height 0.4s ease-in-out;
+    background-color: $bg;
+    @media (max-width: 767.98px) {
+      padding: 0rem 2rem;
+      $height: 60px;
+      height: $height;
+    }
+    &.--show {
+      height: 100%;
+      .navbar__collapse {
+        height: calc(100vh - #{$height});
+        .navbar__nav {
+          .nav__item {
+            .nav__link {
+              visibility: visible;
+              opacity: 1;
+              //transition: opacity 0.3s ease 0.4s;
+            }
+            @for $i from 1 through 3 {
+              &:nth-child(#{$i}) {
+                .nav__link {
+                  transition: opacity 0.3s ease $i * 0.05s + 0.25s;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .navbar__brand {
+      font-size: 3rem;
+      color: $primary-text;
+      line-height: $height;
+      position: relative;
+      z-index: 5;
+      svg {
+        height: 2rem;
+        width: auto;
+      }
+    }
+    .navbar__collapse {
+      display: flex;
+      flex-grow: 1;
+      flex-basis: auto;
+      transition: height 0.4s ease-in-out;
+      @media (max-width: $expand-navbar) {
+        height: 0px;
+        flex-basis: 100%;
+      }
+      .navbar__nav {
+        display: flex;
+        margin-left: auto;
+        .nav__item {
+          .nav__link {
+            padding: 1rem;
+            color: $primary-text;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 3;
+            font-size: $main-size;
+            &:hover {
+              color: $brand-primary;
+            }
+            &.--active {
+              color: $brand-primary;
+            }
+            @media (max-width: $expand-navbar) {
+              display: block;
+              padding: 1rem 0rem;
+              font-size: 2rem;
+              visibility: hidden;
+              opacity: 0;
+              transition: opacity 0.3s ease 0s;
+            }
+          }
+        }
+        @media (max-width: $expand-navbar) {
+          margin-left: 0rem;
+          margin-top: -30px;
+          flex-direction: column;
+          width: 100%;
+          text-align: center;
+          justify-content: center;
+        }
+      }
+    }
+    .navbar__toggler {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      position: relative;
+      z-index: 5;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      transition: height 0.3s;
+      > span {
+        width: 30px;
+        height: 2px;
+        background-color: $primary-text;
+        transition: transform 0.3s ease;
+        transform: rotate(0deg) scale(1, 1);
+        &:first-child {
+          transform-origin: top right;
+        }
+        &:last-child {
+          transform-origin: bottom right;
+        }
+        &:nth-child(2) {
+          transform-origin: center center;
+        }
+      }
+      @media (min-width: $expand-navbar) {
+        display: none;
+      }
+      &.--open {
+        height: 22.5px;
+        span:nth-child(2) {
+          transform: scale(0, 1);
+        }
+        span:first-child {
+          transform: rotate(-45deg);
+        }
+        span:last-child {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+header {
+  .--inverse {
+    background-color: $brand-primary;
+    .navbar__collapse {
+      .navbar__nav {
+        .nav__item {
+          .nav__link {
+            &:hover {
+              color: white;
+            }
+            &.--active {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

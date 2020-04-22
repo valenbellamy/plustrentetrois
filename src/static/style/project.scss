@@ -1,0 +1,116 @@
+.project {
+  padding-top: 80px;
+  height: 100vh;
+  width: 100%;
+
+  .project__info {
+    width: 60%;
+    min-width: 600px;
+    height: 20%;
+    //background-color: yellow;
+    margin: 0 auto;
+    text-align: center;
+    h1 {
+      font-size: calc(#{$main-size} * 1.2);
+      font-family: Lausanne;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-family: Sortsitalic;
+    }
+    // ul {
+    //   li {
+    //     display: inline-block;
+    //     padding: 0rem 0.2rem;
+    //     h2 {
+    //       font-family: Sortsitalic;
+    //     }
+    //   }
+    // }
+    p {
+      font-family: Sorts;
+    }
+    span {
+      font-family: Sortsitalic;
+    }
+  }
+  .slider {
+    display: block;
+    height: 70%;
+    white-space: nowrap;
+    width: auto;
+    overflow: hidden;
+    .slider__inner {
+      display: block;
+      height: 100%;
+      .slider__item {
+        display: inline-block;
+        position: relative;
+        width: auto;
+        height: 100%;
+        margin-right: 0.5rem;
+        &:last-child {
+          margin-right: 0rem;
+        }
+        .gatsby-image-wrapper {
+          height: 100%;
+        }
+      }
+    }
+  }
+  .project__footer {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      text-transform: uppercase;
+      margin-right: 0.2rem;
+    }
+    ul {
+      li {
+        display: inline-block;
+        a {
+          text-transform: uppercase;
+          display: inline-block;
+          h3 {
+            transition: color 0.3s ease;
+            padding-right: 0.2rem;
+          }
+          &.--active {
+            h3 {
+              color: $brand-primary;
+            }
+          }
+          &:hover {
+            h3 {
+              color: $brand-primary;
+            }
+          }
+        }
+        span {
+          padding: 0rem 0.1rem;
+        }
+        &:last-child {
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  &.--not-desktop {
+    .slider {
+      width: 100%;
+      overflow-x: hidden;
+      height: auto;
+      .slider__inner {
+        .slider__item {
+          display: block;
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
