@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import projects from "./projects"
+import Anim from "../components/Anim"
 
 export const query = graphql`
   query {
@@ -82,12 +82,19 @@ const IndexPage = ({ data }) => {
   return (
     <Layout cursor={nocursor}>
       <SEO title="Accueil" />
-      <section className="intro">
+      <Anim />
+      {/* <section className="intro">
+        <div className="anim__logo">
+        <Logo />
+        </div>
+        <div className="anim__text">
         <h1>
           Plus Trente Trois is a creative studio based in Paris, founded in
           2019.
         </h1>
-      </section>
+        </div>
+        
+      </section> */}
       <section className="project-home">
         <div
           className={`cursor ${nocursor ? "--active" : ""}`}

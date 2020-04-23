@@ -176,6 +176,9 @@ button {
   // }
 }
 
-a:hover {
+a {
   cursor: crosshair;
+  &:hover {
+    cursor: crosshair;
+  }
 }

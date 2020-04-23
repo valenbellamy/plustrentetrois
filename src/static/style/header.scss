@@ -52,6 +52,17 @@ header {
       svg {
         height: 2rem;
         width: auto;
+        path {
+          fill: #000;
+          transition: fill 0.3s ease;
+        }
+      }
+      &:hover {
+        svg {
+          path {
+            fill: $brand-primary;
+          }
+        }
       }
     }
     .navbar__collapse {
@@ -153,6 +164,15 @@ header {
 header {
   .--inverse {
     background-color: $brand-primary;
+    .navbar__brand {
+      &:hover {
+        svg {
+          path {
+            fill: white;
+          }
+        }
+      }
+    }
     .navbar__collapse {
       .navbar__nav {
         .nav__item {

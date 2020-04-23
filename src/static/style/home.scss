@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   text-align: center;
   @media (max-width: 767.98px) {
     padding: 0rem 2rem;
@@ -15,6 +15,10 @@
 }
 
 .project-home {
+  margin-top: -10vh;
+  @media (max-width: 767.98px) {
+    margin-top: 0vh;
+  }
   .project__img {
     display: block;
     cursor: none !important;
