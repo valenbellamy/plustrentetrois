@@ -23,7 +23,7 @@ const Header = ({ inverse }) => {
           navOpen ? "--show" : ""
         }`}
       >
-        <Link to="/" className="navbar__brand">
+        <Link to="/" className="navbar__brand" aria-label="Plus Trente Trois">
           <Logo />
         </Link>
         <button

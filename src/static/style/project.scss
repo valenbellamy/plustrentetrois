@@ -64,7 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    span {
+    > span {
       text-transform: uppercase;
       margin-right: 0.2rem;
     }
@@ -101,14 +101,44 @@
     }
   }
   &.--not-desktop {
+    .project__info {
+      height: auto;
+      width: 80%;
+      min-width: inherit;
+      margin-bottom: 2rem;
+    }
     .slider {
-      width: 100%;
+      width: calc(100% - 4rem);
+      margin: 0 auto;
       overflow-x: hidden;
       height: auto;
       .slider__inner {
         .slider__item {
           display: block;
           width: 100% !important;
+          margin-bottom: 2rem;
+          &:last-child {
+            margin-bottom: 0rem;
+          }
+        }
+      }
+    }
+    .project__footer {
+      height: auto;
+      padding: 2rem 0rem;
+      // position: fixed;
+      // bottom: 0rem;
+      // left: 0rem;
+      // width: 100%;
+      // background-color: $bg;
+      > span {
+        display: none;
+      }
+      ul {
+        li {
+          span {
+            padding: 0rem 0.25rem;
+          }
         }
       }
     }

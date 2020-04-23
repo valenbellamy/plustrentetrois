@@ -25,18 +25,22 @@ export const query = graphql`
   }
 `
 
-const ProjectPage = ({ data }) => {
+const ProjectPage = ({ data, pageContext }) => {
   const [desktop, setDesktop] = useState(true)
 
   useEffect(() => {
-    if (typeof window.orientation !== "undefined") {
-      setDesktop(false)
-    }
+    var device = navigator.userAgent.match(
+      /(iPhone|iPod|iPad|Android|BlackBerry)/
+    )
+    setDesktop(device !== null ? false : true)
+    // if (typeof window.orientation !== "undefined") {
+    //   setDesktop(false)
+    // }
   }, [])
 
   return (
     <Layout>
-      <SEO title="Acronyme" />
+      <SEO title={pageContext.titre} />
       <section className={`project ${desktop ? "" : "--not-desktop"}`}>
         <div className="project__info">
           <h1>{data.contentfulProjet.titre}</h1>

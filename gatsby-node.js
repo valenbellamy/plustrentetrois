@@ -10,6 +10,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             slug
+            titre
           }
         }
       }
@@ -22,6 +23,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
       path: `/project/${edge.node.slug}`,
       context: {
         slug: edge.node.slug,
+        titre: edge.node.titre,
       },
     })
   })

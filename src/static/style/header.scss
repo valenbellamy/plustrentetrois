@@ -112,6 +112,9 @@ header {
       -moz-appearance: none;
       -webkit-appearance: none;
       transition: height 0.3s;
+      &:focus {
+        outline: 0;
+      }
       > span {
         width: 30px;
         height: 2px;

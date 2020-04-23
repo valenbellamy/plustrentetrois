@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect, Fragment } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import projects from "./projects"
 
 export const query = graphql`
   query {
@@ -82,7 +83,10 @@ const IndexPage = ({ data }) => {
     <Layout cursor={nocursor}>
       <SEO title="Accueil" />
       <section className="intro">
-        <h1>We are a French creative bureau born in 2019 in Paris, France.</h1>
+        <h1>
+          Plus Trente Trois is a creative studio based in Paris, founded in
+          2019.
+        </h1>
       </section>
       <section className="project-home">
         <div
@@ -93,12 +97,12 @@ const IndexPage = ({ data }) => {
           {cursorText}
         </div>
         {data.allContentfulProjet.edges.map(projet => (
-          <>
+          <Fragment key={projet.node.id}>
             {width < 992 ? (
               <Link
                 to={`/project/${projet.node.slug}`}
                 className="project__img"
-                key={projet.node.id}
+                aria-label={`${projet.node.titre}`}
               >
                 <Img
                   fluid={projet.node.couverturePortrait.fluid}
@@ -133,7 +137,7 @@ const IndexPage = ({ data }) => {
                 />
               </Link>
             )}
-          </>
+          </Fragment>
         ))}
       </section>
     </Layout>
