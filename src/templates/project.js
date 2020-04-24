@@ -44,8 +44,9 @@ const ProjectPage = ({ data, pageContext }) => {
       <section className={`project ${desktop ? "" : "--not-desktop"}`}>
         <div className="project__info">
           <h1>{data.contentfulProjet.titre}</h1>
-          <h2>{data.contentfulProjet.categorie}</h2>
-          {/* <ul>
+          <div>
+            <h2>{data.contentfulProjet.categorie}</h2>
+            {/* <ul>
             <li>
               <h2>{data.contentfulProjet.categorie}</h2>
             </li>
@@ -53,8 +54,9 @@ const ProjectPage = ({ data, pageContext }) => {
               <h2>Categorie 2</h2>
             </li>
           </ul> */}
-          <p>{data.contentfulProjet.description.description}</p>
-          <span>{data.contentfulProjet.date}</span>
+            <p>{data.contentfulProjet.description.description}</p>
+            <span>{data.contentfulProjet.date}</span>
+          </div>
         </div>
         <Slider data={data.contentfulProjet.slider} desktop={desktop} />
         <Menu />

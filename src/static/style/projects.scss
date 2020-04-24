@@ -1,60 +1,114 @@
+// .projects {
+//   width: 100%;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   ul {
+//     li {
+//       padding: 0.5rem 0rem;
+//       text-align: center;
+//       &:nth-child(2n) {
+//         a {
+//           .project__img {
+//             transform: translate(0%, -50%) scale(0.95);
+//             left: 15vw;
+//           }
+//         }
+//       }
+//       &:nth-child(2n + 1) {
+//         a {
+//           .project__img {
+//             transform: translate(0%, -50%) scale(0.95);
+//             right: 15vw;
+//           }
+//         }
+//       }
+//       a {
+//         position: relative;
+//         display: inline-block;
+//         font-size: $main-size;
+//         text-transform: uppercase;
+//         color: $primary-text;
+//         transition: color 0.3s ease;
+//         &:hover {
+//           color: $brand-primary;
+//           .project__img {
+//             opacity: 1;
+//             z-index: 0;
+//             transform: translate(0%, -50%) scale(1, 1);
+//           }
+//         }
+//         .project__img {
+//           width: 20vw;
+//           height: auto;
+//           position: fixed;
+//           top: 50%;
+//           transform-origin: center center;
+//           opacity: 0;
+//           z-index: 0;
+//           transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1),
+//             opacity 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+//           pointer-events: none;
+//         }
+//       }
+//     }
+//   }
+// }
 .projects {
+  display: flex;
   width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  ul {
-    li {
-      padding: 0.5rem 0rem;
-      text-align: center;
-      &:nth-child(2n) {
-        a {
-          .project__img {
-            // transform: translate(0%, -50%) rotate(-15deg);
-            transform: translate(0%, -50%) scale(0.95);
-            left: 15vw;
-          }
-        }
-      }
-      &:nth-child(2n + 1) {
-        a {
-          .project__img {
-            // transform: translate(0%, -50%) rotate(15deg);
-            transform: translate(0%, -50%) scale(0.95);
-            right: 15vw;
-          }
-        }
-      }
+  justify-content: center;
+  margin: 0 auto;
+  .project__list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 1.5rem;
+    width: 60%;
+    min-width: 600px;
+    .project__item {
       a {
-        position: relative;
-        display: inline-block;
-        font-size: $main-size;
-        text-transform: uppercase;
-        color: $primary-text;
-        transition: color 0.3s ease;
+        h2 {
+          font-size: $main-size;
+          text-transform: uppercase;
+          color: $primary-text;
+          transition: color 0.3s ease;
+          text-align: center;
+        }
         &:hover {
-          color: $brand-primary;
-          .project__img {
-            opacity: 1;
-            z-index: 0;
-            // transform: translate(0%, -50%) rotate(0deg);
-            transform: translate(0%, -50%) scale(1, 1);
+          h2 {
+            color: $brand-primary;
           }
         }
         .project__img {
-          width: 20vw;
-          height: auto;
-          position: fixed;
-          top: 50%;
-          transform-origin: center center;
-          opacity: 0;
-          z-index: 0;
-          transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1),
-            opacity 0.4s cubic-bezier(0.86, 0, 0.07, 1);
-          pointer-events: none;
+          margin-bottom: 1.5rem;
+          .gatsby-image-wrapper {
+            height: 100%;
+          }
         }
       }
     }
+    @media (max-width: 1199.98px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    @media (max-width: 991.98px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 767.98px) {
+      grid-template-columns: repeat(3, 1fr);
+      min-width: inherit;
+      width: 100%;
+    }
+  }
+  @media (max-width: 991.98px) {
+    padding: 10rem 0rem;
+    height: auto;
+  }
+  @media (max-width: 767.98px) {
+    padding: 8rem 0rem;
+    width: calc(100% - 4rem);
   }
 }

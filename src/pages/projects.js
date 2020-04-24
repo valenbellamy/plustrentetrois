@@ -28,7 +28,7 @@ const projects = ({ data }) => {
   return (
     <Layout>
       <SEO title="Projects" />
-      <section className="projects">
+      {/* <section className="projects">
         <ul className="project__list">
           {data.allContentfulProjet.edges.map(projet => (
             <li key={projet.node.id} className="project__item">
@@ -44,6 +44,52 @@ const projects = ({ data }) => {
             </li>
           ))}
         </ul>
+      </section> */}
+      <section className="projects">
+        <div className="project__list">
+          {data.allContentfulProjet.edges.map(projet => (
+            <div key={projet.node.id} className="project__item">
+              <Link to={`/project/${projet.node.slug}`}>
+                <div className="project__img">
+                  <Img
+                    fluid={projet.node.photo.fluid}
+                    alt={projet.node.photo.description}
+                    backgroundColor="#c08081"
+                  />
+                </div>
+                <h2>{projet.node.titre}</h2>
+              </Link>
+            </div>
+          ))}
+          {data.allContentfulProjet.edges.map(projet => (
+            <div key={projet.node.id} className="project__item">
+              <Link to={`/project/${projet.node.slug}`}>
+                <div className="project__img">
+                  <Img
+                    fluid={projet.node.photo.fluid}
+                    alt={projet.node.photo.description}
+                    backgroundColor="#c08081"
+                  />
+                </div>
+                <h2>{projet.node.titre}</h2>
+              </Link>
+            </div>
+          ))}
+          {data.allContentfulProjet.edges.map(projet => (
+            <div key={projet.node.id} className="project__item">
+              <Link to={`/project/${projet.node.slug}`}>
+                <div className="project__img">
+                  <Img
+                    fluid={projet.node.photo.fluid}
+                    alt={projet.node.photo.description}
+                    backgroundColor="#c08081"
+                  />
+                </div>
+                <h2>{projet.node.titre}</h2>
+              </Link>
+            </div>
+          ))}
+        </div>
       </section>
     </Layout>
   )

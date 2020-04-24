@@ -18,8 +18,10 @@ const Menu = () => {
 
   return (
     <div className="project__footer">
-      <span>projects: </span>
       <ul>
+        <li>
+          <span>projects: </span>
+        </li>
         {data.allContentfulProjet.edges.map(projet => (
           <li key={projet.node.id}>
             <Link

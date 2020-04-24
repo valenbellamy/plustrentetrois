@@ -8,7 +8,7 @@ const Anim = () => {
   }, [])
 
   const anim = () => {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 767) {
       anime
         .timeline()
         .add({
@@ -104,7 +104,7 @@ const Anim = () => {
       <div className="anim__logo">
         <svg
           version="1.1"
-          id="Calque_1"
+          id="Calque_2"
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
           y="0px"

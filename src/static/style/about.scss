@@ -1,7 +1,7 @@
 .about {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
   height: 100vh;
@@ -14,6 +14,7 @@
     font-family: Sorts;
     width: 60%;
     font-size: 2rem;
+    padding-top: 5rem;
     h1 {
       font-size: 2rem;
       display: inline-block;
@@ -28,6 +29,7 @@
     @media (max-width: 767.98px) {
       width: calc(100% - 4rem);
       font-size: 1.6rem;
+      padding-top: 2rem;
     }
   }
 
@@ -38,7 +40,7 @@
     display: flex;
     justify-content: space-around;
     width: 80%;
-    margin: 15rem auto 0rem auto;
+    margin: 0rem auto;
     > div {
       //width: calc(100% / 3);
       max-width: 350px;
@@ -68,7 +70,7 @@
       }
     }
     @media (max-width: $expand-navbar) {
-      margin: 10rem auto 0rem auto;
+      //margin: 10rem auto 0rem auto;
       display: block;
       > div {
         margin-bottom: 4rem;
@@ -76,7 +78,6 @@
     }
     @media (max-width: 767.98px) {
       width: calc(100% - 4rem);
-      margin: 5rem auto 0rem auto;
       > div {
         margin-bottom: 3rem;
       }

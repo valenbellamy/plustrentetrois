@@ -4,23 +4,34 @@
   width: 100%;
 
   .project__info {
-    width: 60%;
-    min-width: 600px;
-    height: 20%;
-    //background-color: yellow;
+    width: 50%;
+    height: 15%;
     margin: 0 auto;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    @media (max-width: 1199.98px) {
+      width: 60%;
+    }
+    @media (max-width: $expand-navbar) {
+      width: 70%;
+    }
     @media (max-width: 767.98px) {
       height: auto;
       width: 80%;
       min-width: inherit;
       margin-bottom: 2rem;
+      text-align: center;
+      display: block;
     }
     h1 {
       font-size: calc(#{$main-size} * 1.2);
       font-family: Lausanne;
       text-transform: uppercase;
       margin-bottom: 2rem;
+      margin-right: 4rem;
+      @media (max-width: 767.98px) {
+        margin-right: 0rem;
+      }
     }
     h2 {
       font-family: Sortsitalic;
@@ -43,7 +54,7 @@
   }
   .slider {
     display: block;
-    height: 70%;
+    height: 77%;
     white-space: nowrap;
     width: auto;
     overflow: hidden;
@@ -66,23 +77,27 @@
     }
   }
   .project__footer {
-    height: 10%;
+    height: 8%;
     display: flex;
     align-items: center;
     justify-content: center;
-    > span {
-      text-transform: uppercase;
-      margin-right: 0.2rem;
-    }
+    // > span {
+    //   text-transform: uppercase;
+    //   margin-right: 0.2rem;
+    //   font-size: calc(#{$main-size} * 0.8);
+    // }
     ul {
       li {
         display: inline-block;
+        // font-size: calc(#{$main-size} * 0.8);
         a {
           text-transform: uppercase;
           display: inline-block;
+          // font-size: calc(#{$main-size} * 0.8);
           h3 {
             transition: color 0.3s ease;
             padding-right: 0.2rem;
+            font-size: calc(#{$main-size} * 0.8);
           }
           &.--active {
             h3 {
@@ -97,6 +112,16 @@
         }
         span {
           padding: 0rem 0.1rem;
+          font-size: calc(#{$main-size} * 0.8);
+        }
+        &:first-child {
+          span {
+            margin-right: 0.2rem;
+            text-transform: uppercase;
+            @media (max-width: 767.98px) {
+              display: none;
+            }
+          }
         }
         &:last-child {
           span {
@@ -112,6 +137,11 @@
       width: 80%;
       min-width: inherit;
       margin-bottom: 2rem;
+      text-align: center;
+      display: block;
+      h1 {
+        margin-right: 0rem;
+      }
     }
     .slider {
       width: calc(100% - 4rem);
@@ -137,13 +167,13 @@
       // left: 0rem;
       // width: 100%;
       // background-color: $bg;
-      > span {
-        display: none;
-      }
       ul {
         li {
           span {
             padding: 0rem 0.25rem;
+          }
+          &:first-child {
+            display: none;
           }
         }
       }

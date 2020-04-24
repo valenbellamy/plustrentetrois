@@ -57,7 +57,7 @@ header {
       position: relative;
       z-index: 5;
       svg {
-        height: 2rem;
+        height: 1.8rem;
         width: auto;
         path {
           fill: #000;
@@ -86,13 +86,13 @@ header {
         margin-left: auto;
         .nav__item {
           .nav__link {
-            padding: 1rem;
+            padding: 1rem 3rem;
             color: $primary-text;
             text-transform: uppercase;
             transition: color 0.3s ease;
             position: relative;
             z-index: 3;
-            font-size: $main-size;
+            font-size: calc(#{$main-size} * 0.9);
             &:hover {
               color: $brand-primary;
             }

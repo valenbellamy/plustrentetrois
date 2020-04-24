@@ -126,6 +126,7 @@ const IndexPage = ({ data }) => {
               <Link
                 key={projet.node.id}
                 to={`/project/${projet.node.slug}`}
+                aria-label={`${projet.node.titre}`}
                 onMouseEnter={e => {
                   if (!mobile && play) {
                     initCursor(e, `${projet.node.titre}`)
