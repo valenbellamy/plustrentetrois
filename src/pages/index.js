@@ -38,12 +38,18 @@ const IndexPage = ({ data }) => {
   const [cursorText, setCursorText] = useState("")
   const [mobile, setMobile] = useState(false)
   const [width, setWidth] = useState(null)
+  const [play, setPlay] = useState(false)
 
   useEffect(() => {
     var device = navigator.userAgent.match(
       /(iPhone|iPod|iPad|Android|BlackBerry)/
     )
     setMobile(device !== null ? true : false)
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPlay(true), 2200)
+    return () => clearTimeout(timer)
   }, [])
 
   useLayoutEffect(() => {
@@ -80,7 +86,7 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-    <Layout cursor={nocursor}>
+    <Layout cursor={nocursor} anim={true}>
       <SEO title="Accueil" />
       <Anim />
       {/* <section className="intro">
@@ -95,7 +101,7 @@ const IndexPage = ({ data }) => {
         </div>
         
       </section> */}
-      <section className="project-home">
+      <section className={`project-home ${play ? "--visible" : ""}`}>
         <div
           className={`cursor ${nocursor ? "--active" : ""}`}
           style={{ transform: `translate(${x}px, ${y}px)` }}
@@ -121,18 +127,18 @@ const IndexPage = ({ data }) => {
                 key={projet.node.id}
                 to={`/project/${projet.node.slug}`}
                 onMouseEnter={e => {
-                  if (!mobile) {
+                  if (!mobile && play) {
                     initCursor(e, `${projet.node.titre}`)
                   }
                 }}
                 onMouseMove={e => {
-                  if (!mobile) {
+                  if (!mobile && play) {
                     e.persist()
                     setCursor(e)
                   }
                 }}
                 onMouseLeave={() => {
-                  if (!mobile) {
+                  if (!mobile && play) {
                     deleteCursor()
                   }
                 }}

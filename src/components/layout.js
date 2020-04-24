@@ -6,7 +6,7 @@ import Header from "./header"
 import "../static/fonts/fonts.css"
 import "../static/style/index.scss"
 
-const Layout = ({ children, inverse, cursor }) => {
+const Layout = ({ children, inverse, cursor, anim }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -23,7 +23,7 @@ const Layout = ({ children, inverse, cursor }) => {
         inverse ? "--inverse" : ""
       }`}
     >
-      <Header inverse={inverse} />
+      <Header inverse={inverse} anim={anim} />
       <div>
         <main>{children}</main>
       </div>
@@ -35,11 +35,13 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   inverse: PropTypes.bool,
   cursor: PropTypes.bool,
+  ainm: PropTypes.bool,
 }
 
 Header.defaultProps = {
   inverse: false,
   cursor: false,
+  anim: false,
 }
 
 export default Layout

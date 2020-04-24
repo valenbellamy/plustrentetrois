@@ -1,14 +1,23 @@
+import React, { useState, useLayoutEffect, useEffect } from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React, { useState, useLayoutEffect } from "react"
 import Logo from "./logo"
 
-const Header = ({ inverse }) => {
+const Header = ({ inverse, anim }) => {
   const [navOpen, setNavOpen] = useState(false)
+  const [play, setPlay] = useState(anim)
+
   useLayoutEffect(() => {
     window.addEventListener("resize", computeWidth)
     return () => window.removeEventListener("resize", computeWidth)
   })
+
+  useEffect(() => {
+    if (anim) {
+      const timer = setTimeout(() => setPlay(false), 2200)
+      return () => clearTimeout(timer)
+    }
+  }, [])
 
   const computeWidth = () => {
     if (window.innerWidth > 991.98) {
@@ -17,7 +26,7 @@ const Header = ({ inverse }) => {
   }
 
   return (
-    <header>
+    <header className={!play ? "--visible" : ""}>
       <nav
         className={`navbar ${inverse ? "--inverse" : ""} ${
           navOpen ? "--show" : ""
@@ -77,10 +86,12 @@ const Header = ({ inverse }) => {
 
 Header.propTypes = {
   inverse: PropTypes.bool,
+  anim: PropTypes.bool,
 }
 
 Header.defaultProps = {
   inverse: false,
+  anim: false,
 }
 
 export default Header

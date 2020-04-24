@@ -4,15 +4,15 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   text-align: center;
   @media (max-width: 767.98px) {
     padding: 0rem 2rem;
-    height: 70vh;
+    //height: 100vh;
   }
   .anim__logo {
     position: absolute;
-    top: 50%;
+    top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
     svg {
@@ -25,15 +25,30 @@
   }
   .anim__text {
     position: absolute;
-    top: 50%;
+    top: 51%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
     h1 {
-      span {
+      opacity: 0;
+      > span {
         font-size: 2rem;
         font-family: Sorts;
         padding-right: 0.5rem;
-        opacity: 0;
+        display: inline-block;
+        @media (max-width: 767.98px) {
+          display: none;
+        }
+      }
+      > div {
+        display: none;
+        visibility: hidden;
+        font-size: 2rem;
+        font-family: Sorts;
+        @media (max-width: 767.98px) {
+          display: block;
+          visibility: visible;
+        }
       }
     }
   }

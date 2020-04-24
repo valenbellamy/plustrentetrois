@@ -10,6 +10,12 @@
     //background-color: yellow;
     margin: 0 auto;
     text-align: center;
+    @media (max-width: 767.98px) {
+      height: auto;
+      width: 80%;
+      min-width: inherit;
+      margin-bottom: 2rem;
+    }
     h1 {
       font-size: calc(#{$main-size} * 1.2);
       font-family: Lausanne;

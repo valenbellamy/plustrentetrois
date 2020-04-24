@@ -2,47 +2,102 @@ import React, { useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 
 const Anim = () => {
-  const [play, setPlay] = useState(false)
   useEffect(() => {
-    const timer = setTimeout(() => anim(), 500)
+    const timer = setTimeout(() => anim(), 20)
     return () => clearTimeout(timer)
   }, [])
 
   const anim = () => {
-    anime
-      .timeline()
-      .add({
-        targets: ".path",
-        opacity: [0, 1],
-        // scale: [0.9, 1],
-        easing: "linear",
-        duration: 600,
-        delay: anime.stagger(300),
-        loop: false,
-      })
-      .add(
-        {
+    if (window.innerWidth > 768) {
+      anime
+        .timeline()
+        .add({
           targets: ".path",
-          opacity: 0,
-          //scale: [1, 0.5],
-          easing: "linear",
+          opacity: [0, 1],
+          // scale: [0.9, 1],
+          easing: "easeInOutQuad",
           duration: 600,
-          delay: anime.stagger(300),
+          delay: anime.stagger(150),
           loop: false,
-        },
-        "+=300"
-      )
-      .add(
-        {
-          targets: "h1 span",
-          opacity: 1,
-          easing: "linear",
-          duration: 300,
-          delay: anime.stagger(100),
+        })
+        .add(
+          {
+            targets: ".path",
+            opacity: [1, 0],
+            //scale: [1, 0.5],
+            easing: "easeOutExpo",
+            duration: 600,
+            delay: anime.stagger(150),
+            loop: false,
+          },
+          "+=300"
+        )
+        .add(
+          {
+            targets: "h1",
+            opacity: [0, 1],
+            easing: "linear",
+            duration: 0,
+            loop: false,
+          },
+          "-=600"
+        )
+        .add(
+          {
+            targets: "h1 span",
+            opacity: [0, 1],
+            easing: "linear",
+            duration: 300,
+            delay: anime.stagger(80),
+            loop: false,
+          },
+          "-=600"
+        )
+    } else {
+      anime
+        .timeline()
+        .add({
+          targets: ".path",
+          opacity: [0, 1],
+          // scale: [0.9, 1],
+          easing: "easeInOutQuad",
+          duration: 600,
+          delay: anime.stagger(150),
           loop: false,
-        },
-        "-=200"
-      )
+        })
+        .add(
+          {
+            targets: ".path",
+            opacity: 0,
+            //scale: [1, 0.5],
+            easing: "easeOutExpo",
+            duration: 600,
+            delay: anime.stagger(150),
+            loop: false,
+          },
+          "+=300"
+        )
+        .add(
+          {
+            targets: "h1",
+            opacity: [0, 1],
+            easing: "linear",
+            duration: 0,
+            loop: false,
+          },
+          "-=600"
+        )
+        .add(
+          {
+            targets: "h1 div",
+            opacity: [0, 1],
+            easing: "linear",
+            duration: 600,
+            loop: false,
+          },
+          "-=200"
+        )
+    }
   }
   return (
     <section className="anim">
@@ -106,8 +161,9 @@ const Anim = () => {
           <span>founded</span>
           <span>in</span>
           <span>2019.</span>
-          {/* Trente Trois is a creative studio based in Paris, founded in
-          2019. */}
+          <div>
+            Trente Trois is a creative studio based in Paris, founded in 2019.
+          </div>
         </h1>
       </div>
     </section>
