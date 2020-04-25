@@ -58,9 +58,11 @@
     white-space: nowrap;
     width: auto;
     overflow: hidden;
+    position: relative;
     .slider__inner {
       display: block;
       height: 100%;
+      width: auto;
       .slider__item {
         display: inline-block;
         position: relative;
@@ -73,6 +75,32 @@
         .gatsby-image-wrapper {
           height: 100%;
         }
+      }
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      svg {
+        width: 30px;
+        height: auto;
+      }
+      &--right {
+        opacity: 1;
+        right: 3rem;
+        transform: translate(0%, -50%);
+      }
+      &--left {
+        opacity: 0;
+        left: 3rem;
+        transform: translate(0%, -50%) rotate(180deg);
+        transform-origin: center center;
+      }
+      &.--hidden {
+        display: none;
+      }
+      @media (max-width: 991.98px) {
+        display: none;
       }
     }
   }

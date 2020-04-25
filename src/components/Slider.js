@@ -10,8 +10,10 @@ const Slider = ({ data, desktop }) => {
 
   const sliderRef = useRef(null)
 
-  const [{ x }, set] = useSpring(() => ({
+  const [{ x, arrowOpacityLeft, arrowOpacityRight }, set] = useSpring(() => ({
     x: 0,
+    arrowOpacityLeft: 0,
+    arrowOpacityRight: 1,
   }))
 
   useEffect(() => {
@@ -40,7 +42,8 @@ const Slider = ({ data, desktop }) => {
 
   const isFirefox = useRef(typeof InstallTrigger !== "undefined")
   let wheelOffset = useRef(0)
-
+  let opacityLeft
+  let opacityRight
   const bind = useWheel(
     ({ delta: [, dy] }) => {
       if (desktop) {
@@ -54,8 +57,19 @@ const Slider = ({ data, desktop }) => {
         if (wheelOffset.current < -(width - windowWidth)) {
           wheelOffset.current = -(width - windowWidth)
         }
+        // opacity = 1 + wheelOffset.current / 400
+        opacityLeft = -wheelOffset.current / 400
+        if (opacityLeft > 1) {
+          opacityLeft = 1
+        }
+        opacityRight = 1 + wheelOffset.current / (width - windowWidth)
+        if (opacityRight < 0) {
+          opacityRight = 0
+        }
         set({
           x: wheelOffset.current,
+          arrowOpacityLeft: opacityLeft,
+          arrowOpacityRight: opacityRight,
         })
       }
     },
@@ -72,7 +86,7 @@ const Slider = ({ data, desktop }) => {
       <animated.div
         className="slider__inner"
         style={{
-          transform: x.interpolate(x => `translate3d(${x}px, 0px, 0px)`),
+          transform: x.interpolate(x => `translateX(${x}px)`),
         }}
       >
         {data.map(photo => (
@@ -90,6 +104,42 @@ const Slider = ({ data, desktop }) => {
             />
           </div>
         ))}
+      </animated.div>
+      <animated.div
+        className={`arrow arrow--left ${desktop ? "" : "--hidden"}`}
+        style={{ opacity: arrowOpacityLeft }}
+      >
+        <svg
+          width="118"
+          height="119"
+          viewBox="0 0 118 119"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 61.3897V57.5082H110.631L55.8786 2.55365L58.6418 0L118 59.6532L58.4371 119L55.8786 116.242L110.631 61.3897H0Z"
+            fill="black"
+            stroke="black"
+          />
+        </svg>
+      </animated.div>
+      <animated.div
+        className={`arrow arrow--right ${desktop ? "" : "--hidden"}`}
+        style={{ opacity: arrowOpacityRight }}
+      >
+        <svg
+          width="118"
+          height="119"
+          viewBox="0 0 118 119"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 61.3897V57.5082H110.631L55.8786 2.55365L58.6418 0L118 59.6532L58.4371 119L55.8786 116.242L110.631 61.3897H0Z"
+            fill="black"
+            stroke="black"
+          />
+        </svg>
       </animated.div>
     </animated.div>
   )

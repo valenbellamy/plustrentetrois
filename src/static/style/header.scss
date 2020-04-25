@@ -108,6 +108,11 @@ header {
               transition: opacity 0.3s ease 0s;
             }
           }
+          &:last-child {
+            .nav__link {
+              padding-right: 0rem;
+            }
+          }
         }
         @media (max-width: $expand-navbar) {
           margin-left: 0rem;
