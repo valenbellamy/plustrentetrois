@@ -24,11 +24,13 @@
       display: block;
     }
     h1 {
-      font-size: calc(#{$main-size} * 1.2);
+      font-size: calc(#{$main-size} * 0.9);
       font-family: Lausanne;
       text-transform: uppercase;
       margin-bottom: 2rem;
       margin-right: 4rem;
+      padding-top: 1px;
+      white-space: nowrap;
       @media (max-width: 767.98px) {
         margin-right: 0rem;
       }
@@ -125,7 +127,7 @@
           h3 {
             transition: color 0.3s ease;
             padding-right: 0.2rem;
-            font-size: calc(#{$main-size} * 0.8);
+            font-size: calc(#{$main-size} * 0.75);
           }
           &.--active {
             h3 {
@@ -180,7 +182,7 @@
         .slider__item {
           display: block;
           width: 100% !important;
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
           &:last-child {
             margin-bottom: 0rem;
           }

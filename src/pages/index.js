@@ -7,7 +7,10 @@ import Anim from "../components/Anim"
 
 export const query = graphql`
   query {
-    allContentfulProjet(sort: { fields: ordre, order: DESC }) {
+    allContentfulProjet(
+      filter: { isHomepage: { eq: true } }
+      sort: { fields: ordre, order: DESC }
+    ) {
       edges {
         node {
           titre

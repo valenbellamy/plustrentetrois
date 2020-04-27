@@ -1,15 +1,20 @@
 import React, { useRef, useEffect, useLayoutEffect, useState } from "react"
 import Img from "gatsby-image"
 import { useWheel } from "react-use-gesture"
+import { animated, interpolate, useSpring } from "react-spring"
 
 const Slider = ({ data, desktop }) => {
   const [height, setHeight] = useState(null)
   const [width, setWidth] = useState(null)
   const [windowWidth, setWindowWidth] = useState(null)
-  const [x, setX] = useState(0)
-  const [opacityLeft, setOpacityLeft] = useState(0)
-  const [opacityRight, setOpacityRight] = useState(1)
+
   const sliderRef = useRef(null)
+
+  const [{ x, arrowOpacityLeft, arrowOpacityRight }, set] = useSpring(() => ({
+    x: 0,
+    arrowOpacityLeft: 0,
+    arrowOpacityRight: 1,
+  }))
 
   useEffect(() => {
     if (!desktop) {
@@ -37,8 +42,8 @@ const Slider = ({ data, desktop }) => {
 
   const isFirefox = useRef(typeof InstallTrigger !== "undefined")
   let wheelOffset = useRef(0)
-  let currentOpacityLeft
-  let currentOpacityRight
+  let opacityLeft
+  let opacityRight
   const bind = useWheel(
     ({ delta: [, dy] }) => {
       if (desktop) {
@@ -52,17 +57,20 @@ const Slider = ({ data, desktop }) => {
         if (wheelOffset.current < -(width - windowWidth)) {
           wheelOffset.current = -(width - windowWidth)
         }
-        currentOpacityLeft = -wheelOffset.current / 400
-        if (currentOpacityLeft > 1) {
-          currentOpacityLeft = 1
+        // opacity = 1 + wheelOffset.current / 400
+        opacityLeft = -wheelOffset.current / 400
+        if (opacityLeft > 1) {
+          opacityLeft = 1
         }
-        currentOpacityRight = 1 + wheelOffset.current / (width - windowWidth)
-        if (currentOpacityRight < 0) {
-          currentOpacityRight = 0
+        opacityRight = 1 + wheelOffset.current / (width - windowWidth)
+        if (opacityRight < 0) {
+          opacityRight = 0
         }
-        setX(wheelOffset.current)
-        setOpacityLeft(currentOpacityLeft)
-        setOpacityRight(currentOpacityRight)
+        set({
+          x: wheelOffset.current,
+          arrowOpacityLeft: opacityLeft,
+          arrowOpacityRight: opacityRight,
+        })
       }
     },
     {
@@ -74,10 +82,12 @@ const Slider = ({ data, desktop }) => {
   useEffect(bind, [bind])
 
   return (
-    <div className="slider" ref={sliderRef}>
-      <div
+    <animated.div className="slider" ref={sliderRef}>
+      <animated.div
         className="slider__inner"
-        style={{ transform: `translateX(${x}px)` }}
+        style={{
+          transform: x.interpolate(x => `translateX(${x}px)`),
+        }}
       >
         {data.map(photo => (
           <div
@@ -94,10 +104,10 @@ const Slider = ({ data, desktop }) => {
             />
           </div>
         ))}
-      </div>
-      <div
+      </animated.div>
+      <animated.div
         className={`arrow arrow--left ${desktop ? "" : "--hidden"}`}
-        style={{ opacity: opacityLeft }}
+        style={{ opacity: arrowOpacityLeft }}
       >
         <svg
           width="118"
@@ -112,10 +122,10 @@ const Slider = ({ data, desktop }) => {
             stroke="black"
           />
         </svg>
-      </div>
-      <div
+      </animated.div>
+      <animated.div
         className={`arrow arrow--right ${desktop ? "" : "--hidden"}`}
-        style={{ opacity: opacityRight }}
+        style={{ opacity: arrowOpacityRight }}
       >
         <svg
           width="118"
@@ -130,8 +140,8 @@ const Slider = ({ data, desktop }) => {
             stroke="black"
           />
         </svg>
-      </div>
-    </div>
+      </animated.div>
+    </animated.div>
   )
 }
 

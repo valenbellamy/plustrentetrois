@@ -61,34 +61,6 @@ const projects = ({ data }) => {
               </Link>
             </div>
           ))}
-          {data.allContentfulProjet.edges.map(projet => (
-            <div key={projet.node.id} className="project__item">
-              <Link to={`/project/${projet.node.slug}`}>
-                <div className="project__img">
-                  <Img
-                    fluid={projet.node.photo.fluid}
-                    alt={projet.node.photo.description}
-                    backgroundColor="#c08081"
-                  />
-                </div>
-                <h2>{projet.node.titre}</h2>
-              </Link>
-            </div>
-          ))}
-          {data.allContentfulProjet.edges.map(projet => (
-            <div key={projet.node.id} className="project__item">
-              <Link to={`/project/${projet.node.slug}`}>
-                <div className="project__img">
-                  <Img
-                    fluid={projet.node.photo.fluid}
-                    alt={projet.node.photo.description}
-                    backgroundColor="#c08081"
-                  />
-                </div>
-                <h2>{projet.node.titre}</h2>
-              </Link>
-            </div>
-          ))}
         </div>
       </section>
     </Layout>

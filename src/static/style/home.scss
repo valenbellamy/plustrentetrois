@@ -25,6 +25,7 @@
   .project__img {
     display: block;
     cursor: none !important;
+    mix-blend-mode: multiply;
   }
   &.--visible {
     //transform: translate(0%, 0%);
@@ -41,7 +42,6 @@
   color: $primary-text;
   z-index: 10;
   visibility: hidden;
-  mix-blend-mode: multiply;
   transition: all 0s;
   &.--active {
     visibility: visible;
