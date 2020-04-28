@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -41,6 +41,13 @@ const AboutPage = ({ data }) => {
       },
     },
   }
+
+  useEffect(() => {
+    if (document.body.classList.contains("--hidden")) {
+      document.body.classList.remove("--hidden") // do some stuff
+    }
+  }, [])
+
   return (
     <Layout inverse={true}>
       <SEO title="About" />

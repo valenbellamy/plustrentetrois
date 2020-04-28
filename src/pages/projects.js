@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
@@ -24,7 +24,13 @@ export const query = graphql`
   }
 `
 
-const projects = ({ data }) => {
+const ProjectsPage = ({ data }) => {
+  useEffect(() => {
+    if (document.body.classList.contains("--hidden")) {
+      document.body.classList.remove("--hidden") // do some stuff
+    }
+  }, [])
+
   return (
     <Layout>
       <SEO title="Projects" />
@@ -67,4 +73,4 @@ const projects = ({ data }) => {
   )
 }
 
-export default projects
+export default ProjectsPage

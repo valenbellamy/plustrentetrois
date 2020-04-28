@@ -48,6 +48,9 @@ const IndexPage = ({ data }) => {
       /(iPhone|iPod|iPad|Android|BlackBerry)/
     )
     setMobile(device !== null ? true : false)
+    if (document.body.classList.contains("--hidden")) {
+      document.body.classList.remove("--hidden") // do some stuff
+    }
   }, [])
 
   useEffect(() => {
