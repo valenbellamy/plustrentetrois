@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useLayoutEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Menu from "../components/Menu"
@@ -33,10 +33,26 @@ const ProjectPage = ({ data, pageContext }) => {
       /(iPhone|iPod|iPad|Android|BlackBerry)/
     )
     setDesktop(device !== null ? false : true)
-    // if (typeof window.orientation !== "undefined") {
-    //   setDesktop(false)
-    // }
+    if (desktop) {
+      document.body.classList.add("--hidden")
+    } else {
+      document.body.classList.remove("--hidden")
+    }
+  }, [desktop])
+
+  useLayoutEffect(() => {
+    bodyClass()
+    window.addEventListener("resize", bodyClass)
+    return () => window.removeEventListener("resize", bodyClass)
   }, [])
+
+  const bodyClass = () => {
+    if (window.innerWidth < 768) {
+      document.body.classList.remove("--hidden")
+    } else {
+      document.body.classList.add("--hidden")
+    }
+  }
 
   return (
     <Layout>

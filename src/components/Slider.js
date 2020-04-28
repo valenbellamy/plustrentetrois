@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useLayoutEffect, useState } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import Img from "gatsby-image"
 import { useWheel } from "react-use-gesture"
 

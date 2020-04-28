@@ -22,7 +22,6 @@
       margin-bottom: 2rem;
       text-align: center;
       display: block;
-      overflow-y: scroll;
     }
     h1 {
       font-size: calc(#{$main-size} * 0.9);
@@ -117,6 +116,10 @@
     //   margin-right: 0.2rem;
     //   font-size: calc(#{$main-size} * 0.8);
     // }
+    @media (max-width: 991.98px) {
+      width: calc(100% - 4rem);
+      margin: 0 auto;
+    }
     ul {
       li {
         display: inline-block;
@@ -161,6 +164,9 @@
         }
       }
     }
+  }
+  @media (max-width: 767.98px) {
+    overflow-y: scroll;
   }
   &.--not-desktop {
     overflow-y: scroll;
