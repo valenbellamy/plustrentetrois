@@ -2,7 +2,7 @@
   padding-top: 80px;
   height: 100vh;
   width: 100%;
-
+  overflow: hidden;
   .project__info {
     width: 50%;
     height: 15%;
@@ -22,6 +22,7 @@
       margin-bottom: 2rem;
       text-align: center;
       display: block;
+      overflow-y: scroll;
     }
     h1 {
       font-size: calc(#{$main-size} * 0.9);
@@ -162,6 +163,7 @@
     }
   }
   &.--not-desktop {
+    overflow-y: scroll;
     .project__info {
       height: auto;
       width: 80%;
