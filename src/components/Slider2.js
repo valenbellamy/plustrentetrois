@@ -50,27 +50,7 @@ const Slider = ({ data, desktop }) => {
         if (isFirefox.current) {
           dy *= 20
         }
-        wheelOffset.current -= dy
-        if (wheelOffset.current > 0) {
-          wheelOffset.current = 0
-        }
-        if (wheelOffset.current < -(width - windowWidth)) {
-          wheelOffset.current = -(width - windowWidth)
-        }
-        // opacity = 1 + wheelOffset.current / 400
-        opacityLeft = -wheelOffset.current / 400
-        if (opacityLeft > 1) {
-          opacityLeft = 1
-        }
-        opacityRight = 1 + wheelOffset.current / (width - windowWidth)
-        if (opacityRight < 0) {
-          opacityRight = 0
-        }
-        set({
-          x: wheelOffset.current,
-          arrowOpacityLeft: opacityLeft,
-          arrowOpacityRight: opacityRight,
-        })
+        computeX(dy)
       }
     },
     {
@@ -78,6 +58,37 @@ const Slider = ({ data, desktop }) => {
       eventOptions: { passive: false },
     }
   )
+
+  const slideLeft = () => {
+    computeX(-500)
+  }
+
+  const slideRight = () => {
+    computeX(500)
+  }
+
+  const computeX = delta => {
+    wheelOffset.current -= delta
+    if (wheelOffset.current > 0) {
+      wheelOffset.current = 0
+    }
+    if (wheelOffset.current < -(width - windowWidth)) {
+      wheelOffset.current = -(width - windowWidth)
+    }
+    opacityLeft = -wheelOffset.current / 400
+    if (opacityLeft > 1) {
+      opacityLeft = 1
+    }
+    opacityRight = 1 + wheelOffset.current / (width - windowWidth)
+    if (opacityRight < 0) {
+      opacityRight = 0
+    }
+    set({
+      x: wheelOffset.current,
+      arrowOpacityLeft: opacityLeft,
+      arrowOpacityRight: opacityRight,
+    })
+  }
 
   useEffect(bind, [bind])
 
@@ -105,9 +116,12 @@ const Slider = ({ data, desktop }) => {
           </div>
         ))}
       </animated.div>
-      <animated.div
+      <animated.button
         className={`arrow arrow--left ${desktop ? "" : "--hidden"}`}
         style={{ opacity: arrowOpacityLeft }}
+        aria-label="Slide left"
+        type="button"
+        onClick={() => slideLeft()}
       >
         <svg
           width="118"
@@ -122,10 +136,13 @@ const Slider = ({ data, desktop }) => {
             stroke="black"
           />
         </svg>
-      </animated.div>
-      <animated.div
+      </animated.button>
+      <animated.button
         className={`arrow arrow--right ${desktop ? "" : "--hidden"}`}
         style={{ opacity: arrowOpacityRight }}
+        aria-label="Slide right"
+        type="button"
+        onClick={() => slideRight()}
       >
         <svg
           width="118"
@@ -140,7 +157,7 @@ const Slider = ({ data, desktop }) => {
             stroke="black"
           />
         </svg>
-      </animated.div>
+      </animated.button>
     </animated.div>
   )
 }

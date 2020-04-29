@@ -83,6 +83,10 @@
       position: absolute;
       top: 50%;
       z-index: 2;
+      cursor: crosshair;
+      &:focus {
+        outline: 0;
+      }
       svg {
         width: 30px;
         height: auto;

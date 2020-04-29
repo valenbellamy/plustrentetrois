@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Menu from "../components/Menu"
 import Slider from "../components/Slider"
+import Slider2 from "../components/Slider2"
 import SEO from "../components/seo"
 
 export const query = graphql`
@@ -74,7 +75,7 @@ const ProjectPage = ({ data, pageContext }) => {
             <span>{data.contentfulProjet.date}</span>
           </div>
         </div>
-        <Slider data={data.contentfulProjet.slider} desktop={desktop} />
+        <Slider2 data={data.contentfulProjet.slider} desktop={desktop} />
         <Menu />
       </section>
     </Layout>

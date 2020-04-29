@@ -54,9 +54,11 @@ const AboutPage = ({ data }) => {
       <section className="about">
         <div className="content">{description}</div>
         <div className="about__footer">
-          <div>{documentToReactComponents(contact.json, options)}</div>
-          <div>{documentToReactComponents(client.json, options)}</div>
-          <div>{documentToReactComponents(credits.json, options)}</div>
+          <div>
+            <div>{documentToReactComponents(contact.json, options)}</div>
+            <div>{documentToReactComponents(client.json, options)}</div>
+            <div>{documentToReactComponents(credits.json, options)}</div>
+          </div>
         </div>
       </section>
     </Layout>
