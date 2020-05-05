@@ -41,7 +41,24 @@ const IndexPage = ({ data }) => {
   const [cursorText, setCursorText] = useState("")
   const [mobile, setMobile] = useState(false)
   const [width, setWidth] = useState(null)
-  const [play, setPlay] = useState(false)
+  const [play, setPlay] = useState(false) // to avoid e.Client issue ...
+  const [loadingIndicator, setLoadingIndicator] = useState(false)
+  const [cssClass, setCssClass] = useState("project-home")
+
+  useEffect(() => {
+    setLoadingIndicator(localStorage.getItem("loader"))
+    if (loadingIndicator === null) {
+      setCssClass("project-home --visible")
+      setPlay(true)
+    } else {
+      const timer = setTimeout(() => {
+        localStorage.removeItem("loader")
+        setCssClass("project-home --play")
+        setPlay(true)
+      }, 2200)
+      return () => clearTimeout(timer)
+    }
+  }, [loadingIndicator])
 
   useEffect(() => {
     var device = navigator.userAgent.match(
@@ -49,14 +66,14 @@ const IndexPage = ({ data }) => {
     )
     setMobile(device !== null ? true : false)
     if (document.body.classList.contains("--hidden")) {
-      document.body.classList.remove("--hidden") // do some stuff
+      document.body.classList.remove("--hidden")
     }
   }, [])
 
-  useEffect(() => {
-    const timer = setTimeout(() => setPlay(true), 2200)
-    return () => clearTimeout(timer)
-  }, [])
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setPlay(true), 2200)
+  //   return () => clearTimeout(timer)
+  // }, [])
 
   useLayoutEffect(() => {
     computeWidth()
@@ -94,24 +111,17 @@ const IndexPage = ({ data }) => {
   return (
     <Layout cursor={nocursor} anim={true}>
       <SEO title="Accueil" />
-      <Anim />
-      {/* <section className="intro">
-        <div className="anim__logo">
-        <Logo />
-        </div>
-        <div className="anim__text">
-        <h1>
-          Plus Trente Trois is a creative studio based in Paris, founded in
-          2019.
-        </h1>
-        </div>
-        
-      </section> */}
-      <section className={`project-home ${play ? "--visible" : ""}`}>
+      <Anim loading={loadingIndicator} />
+      <section
+        className={cssClass}
+        // className={`project-home ${play ? "--play" : ""}`}
+        // style={{
+        //   transition: `opacity ${loadingIndicator === true ? "1" : "0"}s`,
+        // }}
+      >
         <div
           className={`cursor ${nocursor ? "--active" : ""}`}
           style={{ transform: `translate(${x}px, ${y}px)` }}
-          //style={{ top: `${y}px`, left: `${x}px` }}
         >
           {cursorText}
         </div>

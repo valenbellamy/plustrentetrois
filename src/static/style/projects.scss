@@ -67,8 +67,8 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
     grid-gap: 2.5rem 1.5rem;
-    width: 50%;
-    min-width: 500px;
+    width: 45%;
+    //min-width: 500px;
     .project__item {
       a {
         h2 {
@@ -92,7 +92,8 @@
       }
     }
     @media (max-width: 1199.98px) {
-      grid-template-columns: repeat(5, 1fr);
+      width: 50%;
+      min-width: 500px;
     }
     @media (max-width: 991.98px) {
       grid-template-columns: repeat(4, 1fr);

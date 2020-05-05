@@ -5,7 +5,8 @@ import Logo from "./logo"
 
 const Header = ({ inverse, anim }) => {
   const [navOpen, setNavOpen] = useState(false)
-  const [play, setPlay] = useState(anim)
+  const [loadingIndicator, setLoadingIndicator] = useState(false)
+  const [cssClass, setCssClass] = useState("")
 
   useLayoutEffect(() => {
     window.addEventListener("resize", computeWidth)
@@ -14,10 +15,19 @@ const Header = ({ inverse, anim }) => {
 
   useEffect(() => {
     if (anim) {
-      const timer = setTimeout(() => setPlay(false), 2200)
-      return () => clearTimeout(timer)
+      setLoadingIndicator(localStorage.getItem("loader"))
+      if (loadingIndicator === null) {
+        setCssClass("--visible")
+      } else {
+        const timer = setTimeout(() => {
+          setCssClass("--play")
+        }, 2200)
+        return () => clearTimeout(timer)
+      }
+    } else {
+      setCssClass("--visible")
     }
-  }, [])
+  }, [loadingIndicator])
 
   const computeWidth = () => {
     if (window.innerWidth > 991.98) {
@@ -26,7 +36,9 @@ const Header = ({ inverse, anim }) => {
   }
 
   return (
-    <header className={!play ? "--visible" : ""}>
+    <header //className={!play ? "--visible" : ""}
+      className={cssClass}
+    >
       <nav
         className={`navbar ${inverse ? "--inverse" : ""} ${
           navOpen ? "--show" : ""

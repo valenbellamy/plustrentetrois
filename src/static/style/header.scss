@@ -7,8 +7,13 @@ header {
   z-index: 2;
   opacity: 0;
   transform: translate(0%, -100%);
-  transition: all 1s;
   &.--visible {
+    transition: all 0s;
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
+  &.--play {
+    transition: all 1s;
     opacity: 1;
     transform: translate(0%, 0%);
   }

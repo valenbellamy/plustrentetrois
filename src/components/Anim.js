@@ -1,11 +1,53 @@
 import React, { useEffect, useState } from "react"
 import anime from "animejs/lib/anime.es.js"
 
-const Anim = () => {
+const Anim = ({ loading }) => {
   useEffect(() => {
-    const timer = setTimeout(() => anim(), 20)
-    return () => clearTimeout(timer)
-  }, [])
+    if (loading === null) {
+      noAnim()
+    } else {
+      const timer = setTimeout(() => anim(), 20)
+      return () => clearTimeout(timer)
+    }
+  }, [loading])
+
+  const noAnim = () => {
+    if (window.innerWidth > 767) {
+      anime
+        .timeline()
+        .add({
+          targets: "h1",
+          opacity: [0, 1],
+          easing: "linear",
+          duration: 0,
+          loop: false,
+        })
+        .add({
+          targets: "h1 span",
+          opacity: [0, 1],
+          easing: "linear",
+          duration: 0,
+          loop: false,
+        })
+    } else {
+      anime
+        .timeline()
+        .add({
+          targets: "h1",
+          opacity: [0, 1],
+          easing: "linear",
+          duration: 0,
+          loop: false,
+        })
+        .add({
+          targets: "h1 div",
+          opacity: [0, 1],
+          easing: "linear",
+          duration: 0,
+          loop: false,
+        })
+    }
+  }
 
   const anim = () => {
     if (window.innerWidth > 767) {
@@ -14,7 +56,7 @@ const Anim = () => {
         .add({
           targets: ".path",
           opacity: [0, 1],
-          // scale: [0.9, 1],
+
           easing: "easeInOutQuad",
           duration: 600,
           delay: anime.stagger(150),
@@ -24,7 +66,6 @@ const Anim = () => {
           {
             targets: ".path",
             opacity: [1, 0],
-            //scale: [1, 0.5],
             easing: "easeOutExpo",
             duration: 600,
             delay: anime.stagger(150),
@@ -69,7 +110,6 @@ const Anim = () => {
           {
             targets: ".path",
             opacity: 0,
-            //scale: [1, 0.5],
             easing: "easeOutExpo",
             duration: 600,
             delay: anime.stagger(150),
