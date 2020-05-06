@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useState, Fragment } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import Img from "gatsby-image"
 import { useWheel } from "react-use-gesture"
 import { animated, useSpring } from "react-spring"
-import Video from "./Video"
 
-const Slider = ({ data, desktop, carousel }) => {
+const Slider3 = ({ data, desktop }) => {
   const [height, setHeight] = useState(null)
   const [width, setWidth] = useState(null)
   const [windowWidth, setWindowWidth] = useState(null)
@@ -33,14 +32,8 @@ const Slider = ({ data, desktop, carousel }) => {
     let currentWindowWidth = window.innerWidth
     setWindowWidth(currentWindowWidth)
     let acc = 0
-    carousel.map(photo => {
-      var currentWidth
-      if (photo.isVideo) {
-        currentWidth = photo.poster.fluid.aspectRatio * sliderHeight
-      } else {
-        currentWidth = photo.media.fluid.aspectRatio * sliderHeight
-      }
-      console.log(photo)
+    data.map(photo => {
+      var currentWidth = photo.fluid.aspectRatio * sliderHeight
       return (acc += currentWidth)
     })
     acc += (data.length - 1) * 5
@@ -107,32 +100,20 @@ const Slider = ({ data, desktop, carousel }) => {
           transform: x.interpolate(x => `translateX(${x}px)`),
         }}
       >
-        {carousel.map(media => (
-          <Fragment key={media.media.id}>
-            {media.isVideo ? (
-              <div
-                className="slider__item"
-                style={{
-                  width: `${height * media.poster.fluid.aspectRatio}px`,
-                }}
-              >
-                <Video poster={media.poster} video={media.media} />
-              </div>
-            ) : (
-              <div
-                className="slider__item"
-                style={{
-                  width: `${height * media.media.fluid.aspectRatio}px`,
-                }}
-              >
-                <Img
-                  fluid={media.media.fluid}
-                  alt={media.media.description}
-                  backgroundColor="#c08081"
-                />
-              </div>
-            )}
-          </Fragment>
+        {data.map(photo => (
+          <div
+            className="slider__item"
+            key={photo.id}
+            style={{
+              width: `${height * photo.fluid.aspectRatio}px`,
+            }}
+          >
+            <Img
+              fluid={photo.fluid}
+              alt={photo.description}
+              backgroundColor="#c08081"
+            />
+          </div>
         ))}
       </animated.div>
       <animated.button
@@ -181,4 +162,4 @@ const Slider = ({ data, desktop, carousel }) => {
   )
 }
 
-export default Slider
+export default Slider3

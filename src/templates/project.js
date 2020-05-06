@@ -21,6 +21,24 @@ export const query = graphql`
           ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
+      carousel {
+        media {
+          id
+          fluid {
+            ...GatsbyContentfulFluid_withWebp_noBase64
+          }
+          file {
+            contentType
+            url
+          }
+        }
+        isVideo
+        poster {
+          fluid {
+            ...GatsbyContentfulFluid_withWebp_noBase64
+          }
+        }
+      }
     }
   }
 `
@@ -62,19 +80,15 @@ const ProjectPage = ({ data, pageContext }) => {
           <h1>{data.contentfulProjet.titre}</h1>
           <div>
             <h2>{data.contentfulProjet.categorie}</h2>
-            {/* <ul>
-            <li>
-              <h2>{data.contentfulProjet.categorie}</h2>
-            </li>
-            <li>
-              <h2>Categorie 2</h2>
-            </li>
-          </ul> */}
             <p>{data.contentfulProjet.description.description}</p>
             <span>{data.contentfulProjet.date}</span>
           </div>
         </div>
-        <Slider2 data={data.contentfulProjet.slider} desktop={desktop} />
+        <Slider2
+          carousel={data.contentfulProjet.carousel}
+          data={data.contentfulProjet.slider}
+          desktop={desktop}
+        />
         <Menu />
       </section>
     </Layout>
