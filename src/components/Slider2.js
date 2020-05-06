@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useLayoutEffect, useState } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import Img from "gatsby-image"
 import { useWheel } from "react-use-gesture"
-import { animated, interpolate, useSpring } from "react-spring"
+import { animated, useSpring } from "react-spring"
 
 const Slider = ({ data, desktop }) => {
   const [height, setHeight] = useState(null)
@@ -24,7 +24,7 @@ const Slider = ({ data, desktop }) => {
       window.addEventListener("resize", computeSize)
       return () => window.removeEventListener("resize", computeSize)
     }
-  }, [])
+  }, [desktop])
 
   const computeSize = () => {
     let sliderHeight = sliderRef.current.clientHeight
@@ -34,7 +34,7 @@ const Slider = ({ data, desktop }) => {
     let acc = 0
     data.map(photo => {
       var currentWidth = photo.fluid.aspectRatio * sliderHeight
-      acc += currentWidth
+      return (acc += currentWidth)
     })
     acc += (data.length - 1) * 5
     setWidth(Math.floor(acc))

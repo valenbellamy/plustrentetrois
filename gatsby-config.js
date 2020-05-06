@@ -7,7 +7,8 @@ module.exports = {
     title: `Plus Trente Trois`,
     description: `Plus Trente Trois is a creative studio based in Paris, founded in
     2019.`,
-    author: `@gatsbyjs`,
+    author: `@leopoldinesiaud`,
+    siteUrl: `https://plus33studio.netlify.app/`,
   },
   plugins: [
     "gatsby-plugin-sass",
@@ -30,7 +31,7 @@ module.exports = {
         background_color: `#c08081`,
         theme_color: `#c08081`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -40,6 +41,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    //`gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

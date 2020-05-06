@@ -1,22 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import "../static/fonts/fonts.css"
 import "../static/style/index.scss"
 
 const Layout = ({ children, inverse, cursor, anim }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <div
       className={`site ${cursor ? "--no-cursor" : ""} ${

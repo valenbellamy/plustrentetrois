@@ -2,7 +2,6 @@ import React, { useState, useEffect, useLayoutEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Menu from "../components/Menu"
-import Slider from "../components/Slider"
 import Slider2 from "../components/Slider2"
 import SEO from "../components/seo"
 
