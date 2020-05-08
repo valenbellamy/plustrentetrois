@@ -128,44 +128,52 @@ const IndexPage = ({ data }) => {
         {data.allContentfulProjet.edges.map(projet => (
           <Fragment key={projet.node.id}>
             {width < 992 ? (
-              <Link
-                to={`/project/${projet.node.slug}`}
-                className="project__img"
-                aria-label={`${projet.node.titre}`}
-              >
-                <Img
-                  fluid={projet.node.couverturePortrait.fluid}
-                  alt={projet.node.couverturePortrait.description}
-                />
-              </Link>
+              <Fragment>
+                {projet.node.couverturePortrait && (
+                  <Link
+                    to={`/project/${projet.node.slug}`}
+                    className="project__img"
+                    aria-label={`${projet.node.titre}`}
+                  >
+                    <Img
+                      fluid={projet.node.couverturePortrait.fluid}
+                      alt={projet.node.couverturePortrait.description}
+                    />
+                  </Link>
+                )}
+              </Fragment>
             ) : (
-              <Link
-                key={projet.node.id}
-                to={`/project/${projet.node.slug}`}
-                aria-label={`${projet.node.titre}`}
-                onMouseEnter={e => {
-                  if (!mobile && play) {
-                    initCursor(e, `${projet.node.titre}`)
-                  }
-                }}
-                onMouseMove={e => {
-                  if (!mobile && play) {
-                    e.persist()
-                    setCursor(e)
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (!mobile && play) {
-                    deleteCursor()
-                  }
-                }}
-                className="project__img"
-              >
-                <Img
-                  fluid={projet.node.couverture.fluid}
-                  alt={projet.node.couverture.description}
-                />
-              </Link>
+              <Fragment>
+                {projet.node.couverture && (
+                  <Link
+                    key={projet.node.id}
+                    to={`/project/${projet.node.slug}`}
+                    aria-label={`${projet.node.titre}`}
+                    onMouseEnter={e => {
+                      if (!mobile && play) {
+                        initCursor(e, `${projet.node.titre}`)
+                      }
+                    }}
+                    onMouseMove={e => {
+                      if (!mobile && play) {
+                        e.persist()
+                        setCursor(e)
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (!mobile && play) {
+                        deleteCursor()
+                      }
+                    }}
+                    className="project__img"
+                  >
+                    <Img
+                      fluid={projet.node.couverture.fluid}
+                      alt={projet.node.couverture.description}
+                    />
+                  </Link>
+                )}
+              </Fragment>
             )}
           </Fragment>
         ))}

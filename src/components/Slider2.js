@@ -4,7 +4,7 @@ import { useWheel } from "react-use-gesture"
 import { animated, useSpring } from "react-spring"
 import Video from "./Video"
 
-const Slider = ({ data, desktop, carousel }) => {
+const Slider = ({ desktop, carousel }) => {
   const [height, setHeight] = useState(null)
   const [width, setWidth] = useState(null)
   const [windowWidth, setWindowWidth] = useState(null)
@@ -43,7 +43,7 @@ const Slider = ({ data, desktop, carousel }) => {
       console.log(photo)
       return (acc += currentWidth)
     })
-    acc += (data.length - 1) * 5
+    acc += (carousel.length - 1) * 5
     setWidth(Math.floor(acc))
   }
 

@@ -14,13 +14,6 @@ export const query = graphql`
       }
       date
       categorie
-      slider {
-        id
-        description
-        fluid {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
-      }
       carousel {
         media {
           id
@@ -79,16 +72,18 @@ const ProjectPage = ({ data, pageContext }) => {
         <div className="project__info">
           <h1>{data.contentfulProjet.titre}</h1>
           <div>
-            <h2>{data.contentfulProjet.categorie}</h2>
-            <p>{data.contentfulProjet.description.description}</p>
-            <span>{data.contentfulProjet.date}</span>
+            {data.contentfulProjet.categorie && (
+              <h2>{data.contentfulProjet.categorie}</h2>
+            )}
+            {data.contentfulProjet.description && (
+              <p>{data.contentfulProjet.description.description}</p>
+            )}
+            {data.contentfulProjet.date && (
+              <span>{data.contentfulProjet.date}</span>
+            )}
           </div>
         </div>
-        <Slider2
-          carousel={data.contentfulProjet.carousel}
-          data={data.contentfulProjet.slider}
-          desktop={desktop}
-        />
+        <Slider2 carousel={data.contentfulProjet.carousel} desktop={desktop} />
         <Menu />
       </section>
     </Layout>
