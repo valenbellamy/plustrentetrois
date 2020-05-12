@@ -100,6 +100,13 @@
               -o-filter: blur(0px);
               -ms-filter: blur(0px);
             }
+            @media (max-width: 991.98px) {
+              filter: blur(0px);
+              -webkit-filter: blur(0px);
+              -moz-filter: blur(0px);
+              -o-filter: blur(0px);
+              -ms-filter: blur(0px);
+            }
           }
         }
       }
