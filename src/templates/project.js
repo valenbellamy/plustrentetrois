@@ -26,8 +26,8 @@ export const query = graphql`
         }
         isVideo
         poster {
-          fixed {
-            ...GatsbyContentfulFixed_withWebp_noBase64
+          fluid(maxWidth: 400, quality: 30) {
+            ...GatsbyContentfulFluid_withWebp_noBase64
           }
         }
       }
