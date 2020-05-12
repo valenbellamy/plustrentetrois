@@ -30,7 +30,7 @@ const Menu = () => {
             >
               <h3>{projet.node.titre}</h3>
             </Link>
-            <span>/</span>
+            <span>,</span>
           </li>
         ))}
       </ul>

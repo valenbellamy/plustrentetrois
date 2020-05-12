@@ -36,11 +36,10 @@ const Slider = ({ desktop, carousel }) => {
     carousel.map(photo => {
       var currentWidth
       if (photo.isVideo) {
-        currentWidth = photo.poster.fluid.aspectRatio * sliderHeight
+        currentWidth = photo.poster.fixed.aspectRatio * sliderHeight
       } else {
         currentWidth = photo.media.fluid.aspectRatio * sliderHeight
       }
-      console.log(photo)
       return (acc += currentWidth)
     })
     acc += (carousel.length - 1) * 5
@@ -113,7 +112,7 @@ const Slider = ({ desktop, carousel }) => {
               <div
                 className="slider__item"
                 style={{
-                  width: `${height * media.poster.fluid.aspectRatio}px`,
+                  width: `${height * media.poster.fixed.aspectRatio}px`,
                 }}
               >
                 <Video poster={media.poster} video={media.media} />

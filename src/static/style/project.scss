@@ -171,7 +171,7 @@
           // font-size: calc(#{$main-size} * 0.8);
           h3 {
             transition: color 0.3s ease;
-            padding-right: 0.2rem;
+            //padding-right: 0.2rem;
             font-size: calc(#{$main-size} * 0.75);
           }
           &.--active {
@@ -186,7 +186,7 @@
           }
         }
         span {
-          padding: 0rem 0.1rem;
+          padding: 0rem 0.3rem 0rem 0.1rem;
           font-size: calc(#{$main-size} * 0.8);
         }
         &:first-child {

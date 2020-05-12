@@ -22,13 +22,12 @@ export const query = graphql`
           }
           file {
             contentType
-            url
           }
         }
         isVideo
         poster {
-          fluid {
-            ...GatsbyContentfulFluid_withWebp_noBase64
+          fixed {
+            ...GatsbyContentfulFixed_withWebp_noBase64
           }
         }
       }
