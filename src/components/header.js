@@ -71,7 +71,7 @@ const Header = ({ inverse, anim }) => {
             </li>
             <li className="nav__item active">
               <a
-                href="https://www.instagram.com/?hl=fr"
+                href="https://www.instagram.com/plustrentetrois_studio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav__link"

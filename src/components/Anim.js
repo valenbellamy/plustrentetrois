@@ -202,7 +202,8 @@ const Anim = ({ loading }) => {
           <span>in</span>
           <span>2019.</span>
           <div>
-            Trente Trois is a creative studio based in Paris, founded in 2019.
+            Plus Trente Trois is a creative studio based in Paris, founded in
+            2019.
           </div>
         </h1>
       </div>
