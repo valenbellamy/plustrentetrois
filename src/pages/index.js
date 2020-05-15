@@ -16,13 +16,13 @@ export const query = graphql`
           titre
           id
           couverture {
-            fluid(quality: 70) {
+            fluid(quality: 90) {
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
             description
           }
           couverturePortrait {
-            fluid(quality: 70) {
+            fluid(quality: 90) {
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
             description

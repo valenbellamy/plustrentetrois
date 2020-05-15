@@ -61,6 +61,10 @@ const ProjectsPage = ({ data }) => {
                     fluid={projet.node.photo.fluid}
                     alt={projet.node.photo.description}
                     backgroundColor="#c08081"
+                    imgStyle={{
+                      transition: "all 0.6s ease 0s",
+                      transform: "scale(1)",
+                    }}
                   />
                 </div>
                 <h2>{projet.node.titre}</h2>

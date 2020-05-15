@@ -87,25 +87,35 @@
           margin-bottom: 1.5rem;
           .gatsby-image-wrapper {
             height: 100%;
-            filter: blur(3px);
-            -webkit-filter: blur(3px);
-            -moz-filter: blur(3px);
-            -o-filter: blur(3px);
-            -ms-filter: blur(3px);
-            transition: all 0.3s ease;
+            //transition: all 0.3s ease;
             &:hover {
-              filter: blur(0px);
-              -webkit-filter: blur(0px);
-              -moz-filter: blur(0px);
-              -o-filter: blur(0px);
-              -ms-filter: blur(0px);
+              picture {
+                img {
+                  transform: scale(8) !important;
+                }
+              }
             }
             @media (max-width: 991.98px) {
-              filter: blur(0px);
-              -webkit-filter: blur(0px);
-              -moz-filter: blur(0px);
-              -o-filter: blur(0px);
-              -ms-filter: blur(0px);
+              &:hover {
+                picture {
+                  img {
+                    transform: scale(1);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &:last-child {
+        .project__img {
+          .gatsby-image-wrapper {
+            &:hover {
+              picture {
+                img {
+                  transform: scale(2) !important;
+                }
+              }
             }
           }
         }
