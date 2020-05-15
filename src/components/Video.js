@@ -6,7 +6,13 @@ const Video = ({ video, poster }) => {
 
   return (
     <>
-      <video playsInline loop muted poster={poster.fluid.src} ref={videoEl}>
+      <video
+        playsInline
+        loop
+        muted
+        poster={poster ? poster.fluid.src : ""}
+        ref={videoEl}
+      >
         <source src={video.file.url} type={video.file.contentType} />
         <p>Sorry, the video can't be displayed with your browser.</p>
       </video>
