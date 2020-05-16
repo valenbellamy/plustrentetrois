@@ -98,8 +98,6 @@ const Slider = ({ desktop, carousel }) => {
     })
   }
 
-  console.log(carousel)
-
   useEffect(bind, [bind])
 
   return (
