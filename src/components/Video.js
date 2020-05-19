@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react"
 const Video = ({ video, poster }) => {
   const [play, setPlay] = useState(false)
   const videoEl = useRef(null)
-
   return (
     <>
       <video

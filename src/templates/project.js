@@ -22,6 +22,7 @@ export const query = graphql`
           }
           file {
             contentType
+            url
           }
         }
         isVideo
