@@ -110,7 +110,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout cursor={nocursor} anim={true}>
-      <SEO title="Accueil" />
+      <SEO title="Home" />
       <Anim loading={loadingIndicator} />
       <section
         className={cssClass}
