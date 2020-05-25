@@ -4,8 +4,8 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `+33 Studio`,
-    description: `+33 is a creative studio based in Paris, founded in
+    title: `Plus Trente Trois`,
+    description: `Plus Trente Trois is a creative studio based in Paris, founded in
     2019.`,
     author: `@leopoldinesiaud`,
     siteUrl: `https://plus33studio.com`,
