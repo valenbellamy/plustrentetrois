@@ -60,7 +60,7 @@ const Header = ({ inverse, anim }) => {
         </button>
         <div className="navbar__collapse">
           <ul className="navbar__nav">
-            <li className="nav__item active">
+            <li className="nav__item">
               <Link
                 className="nav__link"
                 to="/projects"
@@ -69,7 +69,7 @@ const Header = ({ inverse, anim }) => {
                 projects
               </Link>
             </li>
-            <li className="nav__item active">
+            <li className="nav__item">
               <a
                 href="https://www.instagram.com/plustrentetrois_studio/"
                 target="_blank"
@@ -80,7 +80,7 @@ const Header = ({ inverse, anim }) => {
                 instagram
               </a>
             </li>
-            <li className="nav__item active">
+            <li className="nav__item">
               <Link
                 className="nav__link"
                 to="/about"
@@ -88,6 +88,16 @@ const Header = ({ inverse, anim }) => {
               >
                 about
               </Link>
+            </li>
+            <li className="nav__item">
+              <a
+                href="https://plus33studio.bigcartel.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="nav__link"
+              >
+                shop
+              </a>
             </li>
           </ul>
         </div>
