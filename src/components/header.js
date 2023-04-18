@@ -91,7 +91,7 @@ const Header = ({ inverse, anim }) => {
             </li>
             <li className="nav__item">
               <a
-                href="https://plus33studio.bigcartel.com/product/calendar-antoinette-love-x-plus-trente-trois"
+                href="https://plus33studio.bigcartel.com/products"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="nav__link"
